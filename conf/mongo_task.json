@@ -1,0 +1,44 @@
+[
+    {
+        "name": "${name-mongo}",
+        "image": "${image-mongo}",
+        "cpu": 1,
+        "memory": 950,
+        "logConfiguration": {
+          "logDriver": "awslogs",
+          "options": {
+            "awslogs-group": "${logname-mongo}",
+            "awslogs-region": "${region}",
+            "awslogs-stream-prefix": "ecs"
+          }
+        },
+        "links": [],
+        "portMappings": [
+            { 
+                "hostPort": 27017,
+                "containerPort": 27017,
+                "protocol": "tcp"
+            }
+        ],
+        "essential": true,
+        "entryPoint": [],
+        "command": [],
+        "environment": [
+            {
+                "name" : "MONGO_INITDB_ROOT_USERNAME",
+                "value" : "${mongo-admin}"
+            },
+            {
+                "name" : "MONGO_INITDB_ROOT_PASSWORD",
+                "value" : "${mongo-password}"
+            }
+        ],
+        "mountPoints": [
+            {
+                "sourceVolume": "mongo-storage",
+                "containerPath": "/data/db"
+            }
+        ],
+        "volumesFrom": []
+    }
+]

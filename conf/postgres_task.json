@@ -1,0 +1,44 @@
+[
+    {
+        "name": "${name-postgres}",
+        "image": "${image-postgres}",
+        "cpu": 1,
+        "memory": 950,
+        "logConfiguration": {
+          "logDriver": "awslogs",
+          "options": {
+            "awslogs-group": "${logname-postgres}",
+            "awslogs-region": "${region}",
+            "awslogs-stream-prefix": "ecs"
+          }
+        },
+        "links": [],
+        "portMappings": [
+            { 
+                "hostPort": 5432,
+                "containerPort": 5432,
+                "protocol": "tcp"
+            }
+        ],
+        "essential": true,
+        "entryPoint": [],
+        "command": [],
+        "environment": [
+            {
+                "name" : "POSTGRES_USER",
+                "value" : "${postgres-admin}"
+            },
+            {
+                "name" : "POSTGRES_PASSWORD",
+                "value" : "${postgres-password}"
+            }
+        ],
+        "mountPoints": [
+            {
+                "sourceVolume": "postgres-storage",
+                "containerPath": "/var/lib/postgresql/data"
+            }
+        ],
+        "volumesFrom": []
+    }
+]

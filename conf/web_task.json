@@ -1,0 +1,35 @@
+[
+    {
+        "name": "${name-nginx}",
+        "image": "${image-nginx}",
+        "cpu": 1,
+        "memory": 950,
+        "logConfiguration": {
+          "logDriver": "awslogs",
+          "options": {
+            "awslogs-group": "${logname-nginx}",
+            "awslogs-region": "${region}",
+            "awslogs-stream-prefix": "ecs"
+          }
+        },
+        "links": [],
+        "portMappings": [
+            { 
+                "hostPort": 80,
+                "containerPort": 80,
+                "protocol": "tcp"
+            },
+            { 
+                "hostPort": 443,
+                "containerPort": 443,
+                "protocol": "tcp"
+            }
+        ],
+        "essential": true,
+        "entryPoint": [],
+        "command": [],
+        "environment": [],
+        "mountPoints": [],
+        "volumesFrom": []
+    }
+]

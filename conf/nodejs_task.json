@@ -1,0 +1,35 @@
+[
+    {
+        "name": "${name-nodejs}",
+        "image": "${image-nodejs}",
+        "cpu": 1,
+        "memory": 950,
+        "logConfiguration": {
+          "logDriver": "awslogs",
+          "options": {
+            "awslogs-group": "${logname-nodejs}",
+            "awslogs-region": "${region}",
+            "awslogs-stream-prefix": "ecs"
+          }
+        },
+        "links": [],
+        "portMappings": [
+            { 
+                "hostPort": 8080,
+                "containerPort": 8080,
+                "protocol": "tcp"
+            }
+        ],
+        "essential": true,
+        "entryPoint": [],
+        "command": [],
+        "environment": [],
+        "mountPoints": [
+            {
+                "sourceVolume": "nodejs-storage",
+                "containerPath": "/node"
+            }
+        ],
+        "volumesFrom": []
+    }
+]
