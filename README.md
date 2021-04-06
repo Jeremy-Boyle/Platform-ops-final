@@ -1,2 +1,4 @@
 # Platform-ops-final
- Final work
+Start with aws.tf file
+
+Refer to powerpoint for more information
